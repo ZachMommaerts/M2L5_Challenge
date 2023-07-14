@@ -8,14 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    var stringArray:[String] = ["Hello", "Hiya", "Aloha", "Howdy", "Good Morning"]
+    @State var stringToDisplay:[String] = []
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            List(stringToDisplay, id: \.self) { string in
+                Text(string)
+            }
+            
+            Button("Add to list") {
+                addToList()
+            }
         }
         .padding()
+    }
+    
+    func addToList() {
+        var randomIndex = Int.random(in: 0...4)
+        stringToDisplay.append(stringArray[randomIndex])
     }
 }
 
